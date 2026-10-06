@@ -1,4 +1,4 @@
-# Livox-MID360-3D-SLAM: 3D LiDAR Mapping with the Livox MID-360
+# 3D LiDAR SLAM with the Livox MID-360 on Nvidia Jetson
 
 **A reproducible ROS 2 workspace for 3D map generation with a Livox MID-360, comparing a tightly coupled LiDAR-inertial odometry (FAST-LIO2) with a graph-based NDT SLAM (lidarslam_ros2) on an embedded NVIDIA Jetson.**
 
