@@ -1,4 +1,4 @@
-# Livox_SLAM: 3D LiDAR Mapping with the Livox MID-360
+# Livox-MID360-3D-SLAM: 3D LiDAR Mapping with the Livox MID-360
 
 **A reproducible ROS 2 workspace for 3D map generation with a Livox MID-360, comparing a tightly coupled LiDAR-inertial odometry (FAST-LIO2) with a graph-based NDT SLAM (lidarslam_ros2) on an embedded NVIDIA Jetson.**
 
@@ -45,7 +45,7 @@ The repository contains the exact package versions and configuration used, the m
 ## 1. Repository Structure
 
 ```
-Livox_SLAM/
+Livox-MID360-3D-SLAM/
 ├── src/                          # ROS 2 workspace sources
 │   ├── livox_ros_driver2/        # Livox ROS 2 driver (MID-360 network config)
 │   ├── FAST_LIO_ROS2/            # FAST-LIO2 for ROS 2 (+ ikd-Tree)
@@ -108,8 +108,8 @@ sudo make install          # installs liblivox_lidar_sdk_* to /usr/local/lib
 ### Step 4: Clone and build this workspace
 
 ```bash
-git clone https://github.com/NARMYN/Livox_SLAM.git ~/Livox_SLAM
-cd ~/Livox_SLAM
+git clone https://github.com/NARMYN/Livox-MID360-3D-SLAM.git ~/Livox-MID360-3D-SLAM
+cd ~/Livox-MID360-3D-SLAM
 source /opt/ros/humble/setup.bash
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install --cmake-args -DROS_EDITION=ROS2 -DHUMBLE_ROS=humble -DCMAKE_BUILD_TYPE=Release
@@ -123,7 +123,7 @@ In every new terminal:
 
 ```bash
 source /opt/ros/humble/setup.bash
-source ~/Livox_SLAM/install/setup.bash
+source ~/Livox-MID360-3D-SLAM/install/setup.bash
 ```
 
 ---
@@ -227,7 +227,7 @@ The launch file remaps the scan matcher's input to `/livox/lidar` and publishes 
 ros2 launch livox_ros_driver2 rviz_MID360_launch.py
 
 # Terminal 2: lidarslam (run from the folder where the map should be saved)
-cd ~/Livox_SLAM/maps
+cd ~/Livox-MID360-3D-SLAM/maps
 ros2 launch lidarslam lidarslam.launch.py
 ```
 
