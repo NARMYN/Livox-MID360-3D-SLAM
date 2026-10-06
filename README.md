@@ -10,7 +10,7 @@ Narmeen Sabah Siddiqui · April–May 2025
 
 <div align="center">
   <img src="docs/images/fastlio_map.png" width="820" alt="FAST-LIO2 3D map">
-  <br><em>Figure 1. 3D map built with FAST-LIO2 from the Livox MID-360 (<code>maps/fastlio_map.pcd</code>, 120,761 points, coloured by height).</em>
+  <br><em>Figure 1. 3D map built with FAST-LIO2 from the Livox MID-360 (<code>maps/fastlio_map.pcd</code>, 120,761 points, coloured by height). The small ring near the centre of the top view is the oil barrel the device circled during recording.</em>
 </div>
 
 ---
@@ -243,9 +243,11 @@ This writes `map.pcd` (ASCII) and `pose_graph.g2o` to the directory `lidarslam` 
 
 ## 7. Results and Provided Maps
 
+**Recording procedure.** For both maps, the MID-360 was mounted on top of the device, which was moved in a loop around an oil barrel. Circling a single, distinctive object gives the scan matcher a fixed reference visible from every side, and brings the sensor back to its starting view so loop closure can be checked. The barrel appears in both maps as a small ring of points near the centre.
+
 <div align="center">
   <img src="docs/images/lidarslam_map.png" width="820" alt="lidarslam_ros2 3D map">
-  <br><em>Figure 2. 3D map built with lidarslam_ros2 (<code>maps/lidarslam_map.pcd</code>, 54,489 points).</em>
+  <br><em>Figure 2. 3D map built with lidarslam_ros2 (<code>maps/lidarslam_map.pcd</code>, 54,489 points). The small circle near the centre is the oil barrel used as the loop reference.</em>
 </div>
 
 | File | Method | Recorded | Points | Extent (1st–99th percentile) | Format |
@@ -255,7 +257,7 @@ This writes `map.pcd` (ASCII) and `pose_graph.g2o` to the directory `lidarslam` 
 | `maps/lidarslam_pose_graph.g2o` | lidarslam_ros2 | 2025-04-22 | 9 poses (SE3), 20 edges | — | g2o |
 
 **Comparison:**
-- **FAST-LIO2** fuses the MID-360's IMU with the LiDAR. Its map has 2.2× more points over a larger area (41.7 × 73.8 m), and captures tall structures such as trees and building faces up to ~8.5 m.
+- **FAST-LIO2** fuses the MID-360's IMU with the LiDAR. Its map has 2.2× more points over a larger area (41.7 × 73.8 m), and captures surrounding structures up to ~8.5 m in height.
 - **lidarslam_ros2** ran on LiDAR only (`use_imu: false`), with NDT scan matching and pose-graph optimisation over 9 keyframes. It also saves the optimised pose graph (`.g2o`), which can be inspected or re-optimised offline.
 - The two maps come from different runs, so they show what each pipeline produces rather than a controlled side-by-side benchmark.
 
